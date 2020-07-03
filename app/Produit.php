@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produit extends Model
 {
+    protected $guarded=[];
     function Categorie(){
-        $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Categorie::class);
     }
     function Stock(){
-        $this->hasOne(Stock::class);
+        return $this->hasOne(Stock::class);
     }
 
     function Ventes(){
-        $this->hasMany(Vente::class);
+        return $this->hasMany(Vente::class);
     }
 }

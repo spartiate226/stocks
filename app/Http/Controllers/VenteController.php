@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Produit;
+use App\Stock;
+use App\Vente;
 use Illuminate\Http\Request;
 
 class VenteController extends Controller
 {
     function index(){
-        return view('pages.vente');
+        $vente=Vente::paginate(10);
+        return view('pages.vente',['ventes'=>$vente]);
     }
     function store(Request $request){
-        
-        return redirect('');
+        $vente=Vente::create([
+            'produit_id'=>$request->produit_id,
+            'quantite'=>$request->quantite,
+            'somme'=>Produit::find($request->produit_id)->prix*$request->quantite
+        ]);
+        $stock=$vente->Produit->Stock;
+        $stock->quantite=$stock->quantite-$request->quantite;
+        $stock->save();
+        return redirect('vente');
     }
 }

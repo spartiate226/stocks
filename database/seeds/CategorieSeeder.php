@@ -1,5 +1,6 @@
 <?php
 
+use App\Categorie;
 use Illuminate\Database\Seeder;
 
 class CategorieSeeder extends Seeder
@@ -11,6 +12,10 @@ class CategorieSeeder extends Seeder
      */
     public function run()
     {
-        factory(Categorie::class,5)->create();
+        factory(Categorie::class)->create(['intitule'=>'informatique']);
+        factory(Categorie::class)->create(['intitule'=>"Electronique"]);
+        factory(Categorie::class)->create(['intitule'=>"Vetement"]);
+        factory(Categorie::class)->create(['intitule'=>"Chaussure"]);
+        factory(Categorie::class)->create(['intitule'=>"Autre"]);
     }
 }

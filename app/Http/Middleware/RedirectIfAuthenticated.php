@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RedirectIfAuthenticated
 {
@@ -20,7 +21,9 @@ class RedirectIfAuthenticated
     {
     if (Auth::guard($guard)->attempt(['username'=>$request->username,'password'=>$request->password])){
             return redirect('vente');
-        }
+    }else{
+        dd('inconnu');
+    }
 
         return $next($request);
     }

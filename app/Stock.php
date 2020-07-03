@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
+    protected $guarded=[];
     function Produit(){
-        $this->belongsTo(Produit::class);
+        return $this->belongsTo(Produit::class);
     }
 }
